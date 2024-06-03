@@ -21,7 +21,7 @@ class State:
 
     def readYards(self) -> None:
         df = pd.read_csv(YARD_CSV_PATH)
-        self.yards = [Yard(row["height"], row["width"]) for _, row in df.iterrows()]
+        self.yard = [Yard(row["height"], row["width"]) for _, row in df.iterrows()][0]
 
     def writePlacements(self) -> None:
         placements = []
