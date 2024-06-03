@@ -15,6 +15,8 @@ class State:
 
         self.stage = 0
 
+        self.score = 0
+
     def readLots(self) -> None:
         df = pd.read_csv(LOTS_CSV_PATH)
         self.lots = [Lot(row["height"], row["width"]) for _, row in df.iterrows()]
@@ -36,3 +38,10 @@ class State:
         )
 
         self.stage += 1
+
+    def computeScore(self) -> None:
+        self.score = 0
+        for lot in self.lots:
+            if (lot.x is None) or (lot.y is None):
+                continue
+            self.score += lot.x * lot.y
