@@ -3,21 +3,17 @@ import random
 import pandas as pd
 
 from common.cleanup import cleanup_csv
-from common.const import DATA_DIR, LOTS_CSV_PATH, SEED, YARDS_CSV_PATH, H, M, N, T, W
+from common.const import DATA_DIR, LOTS_CSV_PATH, SEED, YARDS_CSV_PATH, H, M, N, W
 from common.seed import seed_everything
 
 
 def generate_lots() -> None:
     lots = []
     for _ in range(N):
-        start_time = random.randint(0, T - 1)
-        end_time = random.randint(start_time, T - 1)
         lot_height = random.randint(1, H // 2)
         lot_width = random.randint(1, W // 2)
         lots.append(
             {
-                "start_time": start_time,
-                "end_time": end_time,
                 "height": lot_height,
                 "width": lot_width,
             }
@@ -33,6 +29,8 @@ def generate_yards() -> None:
     for _ in range(M):
         height = random.randint(int(0.7 * H), H)
         width = random.randint(int(0.7 * W), W)
+        if width > height:
+            width, height = height, width
         yards.append({"height": height, "width": width})
 
     yards_df = pd.DataFrame(yards)
