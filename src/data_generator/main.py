@@ -25,11 +25,7 @@ def generate_lots() -> None:
 
 
 def generate_yard() -> None:
-    height = random.randint(int(0.7 * H), H)
-    width = random.randint(int(0.7 * W), W)
-    if width > height:
-        width, height = height, width
-    yards_df = pd.DataFrame([{"height": height, "width": width}])
+    yards_df = pd.DataFrame([{"height": H, "width": W}])
     yards_df.to_csv(YARD_CSV_PATH, index=False)
     print(f"Generated yard.csv with in {YARD_CSV_PATH.resolve()}.")
 
