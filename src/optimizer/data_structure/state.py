@@ -17,7 +17,7 @@ class State:
 
     def readLots(self) -> None:
         df = pd.read_csv(LOTS_CSV_PATH)
-        self.lots = [Lot(row["height"], row["width"], M) for _, row in df.iterrows()]
+        self.lots = [Lot(row["height"], row["width"]) for _, row in df.iterrows()]
 
     def readYards(self) -> None:
         df = pd.read_csv(YARD_CSV_PATH)
@@ -25,10 +25,9 @@ class State:
 
     def writePlacements(self) -> None:
         placements = []
-        for lot in self.lots:
-            if (lot.x is not None) and (lot.y is not None):
-                placement = {"x": lot.x, "y": lot.y}
-                placements.append(placement)
+        for i, lot in enumerate(self.lots):
+            placement = {"x": lot.x, "y": lot.y, "order": i}
+            placements.append(placement)
 
         placements_df = pd.DataFrame(placements)
         placements_df.to_csv(PLACEMENTS_CSV_PATH(self.stage), index=False)
