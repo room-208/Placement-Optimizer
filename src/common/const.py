@@ -9,7 +9,7 @@ SRC_DIR = ROOT_DIR / "src"
 OUTPUTS_DIR = ROOT_DIR / "outputs"
 
 LOTS_CSV_PATH = DATA_DIR / "lots.csv"
-YARDS_CSV_PATH = DATA_DIR / "yards.csv"
+YARD_CSV_PATH = DATA_DIR / "yard.csv"
 
 PLACEMENTS_CSV_PATH = (
     lambda stage: OUTPUTS_DIR / f"placements_stage_{str(stage).zfill(4)}.csv"
@@ -17,8 +17,7 @@ PLACEMENTS_CSV_PATH = (
 ANIMATION_GIT_PATH = OUTPUTS_DIR / "animation.gif"
 
 SEED = 0
-N = 60
-M = 2
+N = 30
 H = 50
 W = 20
 
