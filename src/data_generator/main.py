@@ -10,8 +10,8 @@ from common.seed import seed_everything
 def generate_lots() -> None:
     lots = []
     for _ in range(N):
-        lot_height = random.randint(1, H // 2)
-        lot_width = random.randint(1, W // 2)
+        lot_height = random.randint(1, H // 3)
+        lot_width = random.randint(1, W // 3)
         lots.append(
             {
                 "height": lot_height,

@@ -30,6 +30,7 @@ if __name__ == "__main__":
         elif r == 2:
             new_state = swap(new_state)
 
+        new_state = bottom_left(new_state)
         new_state.computeScore()
 
         if new_state.score > state.score:
