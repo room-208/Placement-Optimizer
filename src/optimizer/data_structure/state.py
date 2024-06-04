@@ -32,7 +32,13 @@ class State:
     def writePlacements(self) -> None:
         placements = []
         for i, lot in enumerate(self.lots):
-            placement = {"x": lot.x, "y": lot.y, "order": i}
+            placement = {
+                "x": lot.x,
+                "y": lot.y,
+                "width": lot.width,
+                "height": lot.height,
+                "order": i,
+            }
             placements.append(placement)
 
         placements_df = pd.DataFrame(placements)
