@@ -1,11 +1,10 @@
-from common.const import N
 from optimizer.data_structure.state import State
 
 
 def bottom_left(state: State) -> State:
     state.resetPlacements()
 
-    for i in range(N):
+    for i in range(len(state.lots)):
         candidates = make_bottom_left_candidates(i, state)
 
         bottom_left_points = []

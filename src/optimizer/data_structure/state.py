@@ -1,6 +1,6 @@
 import pandas as pd
 
-from common.const import LOTS_CSV_PATH, PLACEMENTS_CSV_PATH, YARD_CSV_PATH, N
+from common.const import LOTS_CSV_PATH, PLACEMENTS_CSV_PATH, YARD_CSV_PATH
 from optimizer.data_structure.lot import Lot
 from optimizer.data_structure.yard import Yard
 
@@ -26,7 +26,7 @@ class State:
         self.yard = [Yard(row["height"], row["width"]) for _, row in df.iterrows()][0]
 
     def resetPlacements(self) -> None:
-        for i in range(N):
+        for i in range(len(self.lots)):
             self.lots[i].x, self.lots[i].y = None, None
 
     def writePlacements(self) -> None:

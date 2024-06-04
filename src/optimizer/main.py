@@ -20,7 +20,7 @@ if __name__ == "__main__":
     state.computeScore()
     state.writePlacements()
 
-    for _ in range(10000):
+    for _ in range(300):
         r = random.randint(0, 2)
         new_state = deepcopy(state)
         if r == 0:

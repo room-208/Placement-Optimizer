@@ -3,25 +3,41 @@ import random
 import pandas as pd
 
 from common.cleanup import cleanup_csv
-from common.const import DATA_DIR, LOTS_CSV_PATH, SEED, YARD_CSV_PATH, H, N, W
+from common.const import (
+    DATA_DIR,
+    DIVIDE_MAX,
+    DIVIDE_MIN,
+    LOTS_CSV_PATH,
+    PERCENT,
+    SEED,
+    YARD_CSV_PATH,
+    H,
+    W,
+)
 from common.seed import seed_everything
 
 
 def generate_lots() -> None:
     lots = []
-    for _ in range(N):
-        lot_height = random.randint(1, H // 3)
-        lot_width = random.randint(1, W // 3)
+    area_sum = 0
+    while True:
+        lot_height = random.randint(H // DIVIDE_MAX, H // DIVIDE_MIN)
+        lot_width = random.randint(W // DIVIDE_MAX, W // DIVIDE_MIN)
+
+        if area_sum + lot_height * lot_width > PERCENT * H * W:
+            break
+
         lots.append(
             {
                 "height": lot_height,
                 "width": lot_width,
             }
         )
+        area_sum += lot_height * lot_width
 
     lots_df = pd.DataFrame(lots)
     lots_df.to_csv(LOTS_CSV_PATH, index=False)
-    print(f"Generated lots.csv with {N} lots in {LOTS_CSV_PATH.resolve()}.")
+    print(f"Generated lots.csv with {len(lots_df)} lots in {LOTS_CSV_PATH.resolve()}.")
 
 
 def generate_yard() -> None:
