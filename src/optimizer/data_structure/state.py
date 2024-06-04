@@ -44,4 +44,4 @@ class State:
         for lot in self.lots:
             if (lot.x is None) or (lot.y is None):
                 continue
-            self.score += lot.x * lot.y
+            self.score += lot.height * lot.width
