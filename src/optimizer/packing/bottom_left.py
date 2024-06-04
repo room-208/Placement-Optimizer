@@ -4,9 +4,9 @@ from optimizer.data_structure.state import State
 
 def bottom_left(state: State) -> State:
     for i in range(N):
-        bottom_left_points = []
         candidates = make_bottom_left_candidates(i, state)
 
+        bottom_left_points = []
         for point in candidates:
             if is_feasible_point(i, point, state):
                 bottom_left_points.append(point)
@@ -52,7 +52,7 @@ def is_feasible_point(i: int, point: tuple[int, int], state: State) -> bool:
     ):
         return False
     for j in range(i):
-        if state.lots[j].isPlaced():
+        if not state.lots[j].isPlaced():
             continue
         if not (
             point[0] + state.lots[i].width <= state.lots[j].x
