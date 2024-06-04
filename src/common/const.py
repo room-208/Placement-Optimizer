@@ -20,5 +20,3 @@ SEED = 0
 N = 50
 H = 50
 W = 30
-
-NUM_COLS = 2
