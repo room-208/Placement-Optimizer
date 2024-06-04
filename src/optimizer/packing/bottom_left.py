@@ -3,6 +3,8 @@ from optimizer.data_structure.state import State
 
 
 def bottom_left(state: State) -> State:
+    state.resetPlacements()
+
     for i in range(N):
         candidates = make_bottom_left_candidates(i, state)
 
