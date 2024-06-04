@@ -54,11 +54,10 @@ def is_feasible_point(i: int, point: tuple[int, int], state: State) -> bool:
     for j in range(i):
         if not state.lots[j].isPlaced():
             continue
-        if not (
-            point[0] + state.lots[i].width <= state.lots[j].x
-            or point[0] >= state.lots[j].x + state.lots[j].width
-            or point[1] + state.lots[i].height <= state.lots[j].y
-            or point[1] >= state.lots[j].y + state.lots[j].height
+        if max(point[0], state.lots[j].x) < min(
+            point[0] + state.lots[i].width, state.lots[j].x + state.lots[j].width
+        ) and max(point[1], state.lots[j].y) < min(
+            point[1] + state.lots[i].height, state.lots[j].y + state.lots[j].height
         ):
             return False
     return True
