@@ -9,4 +9,4 @@ class Lot:
         self.y = None
 
     def isPlaced(self) -> bool:
-        return (self.x is None) and (self.y is None)
+        return (self.x is not None) and (self.y is not None)
