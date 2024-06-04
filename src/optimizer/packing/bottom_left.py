@@ -36,7 +36,7 @@ def make_bottom_left_candidates(i: int, state: State) -> list[tuple[int, int]]:
     return candidates
 
 
-def is_feasible_point(i: int, point: tuple[int, int], state: State):
+def is_feasible_point(i: int, point: tuple[int, int], state: State) -> bool:
     if (
         point[0] + state.lots[i].width > state.yard.width
         or point[1] + state.lots[i].height > state.yard.height
