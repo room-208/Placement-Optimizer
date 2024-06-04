@@ -7,3 +7,6 @@ class Lot:
         self.width = width
         self.x = None
         self.y = None
+
+    def isPlaced(self) -> bool:
+        return (self.x is None) and (self.y is None)

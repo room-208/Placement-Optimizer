@@ -22,17 +22,26 @@ def bottom_left(state: State) -> State:
 
 def make_bottom_left_candidates(i: int, state: State) -> list[tuple[int, int]]:
     candidates = [(0, 0)]
-    for k in range(i):
-        for j in range(k + 1):
-            if (state.lots[k].x is not None) and (state.lots[j].y is not None):
+    for j in range(i):
+        for k in range(j):
+            if state.lots[j].isPlaced() and state.lots[k].isPlaced():
                 candidates.append(
-                    (state.lots[k].x + state.lots[k].width, state.lots[j].y)
+                    (
+                        state.lots[k].x + state.lots[k].width,
+                        state.lots[j].y + state.lots[j].height,
+                    )
                 )
-        for j in range(k + 1):
-            if (state.lots[j].x is not None) and (state.lots[k].y is not None):
                 candidates.append(
-                    (state.lots[j].x, state.lots[k].y + state.lots[k].height)
+                    (
+                        state.lots[j].x + state.lots[j].width,
+                        state.lots[k].y + state.lots[k].height,
+                    )
                 )
+    for j in range(i):
+        if state.lots[j].isPlaced():
+            candidates.append((0, state.lots[j].y + state.lots[j].height))
+            candidates.append((state.lots[j].x + state.lots[j].width, 0))
+
     return candidates
 
 
@@ -43,7 +52,7 @@ def is_feasible_point(i: int, point: tuple[int, int], state: State) -> bool:
     ):
         return False
     for j in range(i):
-        if (state.lots[j].x is None) or (state.lots[j].y is None):
+        if state.lots[j].isPlaced():
             continue
         if not (
             point[0] + state.lots[i].width <= state.lots[j].x
